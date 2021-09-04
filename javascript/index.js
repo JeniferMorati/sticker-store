@@ -13,6 +13,7 @@ const authPassInput = document.getElementById("authPassInput");
 const authUserInput = document.getElementById("authUserInput");
 const dimissAuthVerifyModal = document.getElementById("dimissAuthVerifyModal");
 const errorAuthMessage = document.getElementById("errorAuthMessage");
+const customerInfoResponsive = document.getElementById("customerInfoResponsive");
 
 submitCheckout.addEventListener("click", () => {
   checkoutDimiss.click();
@@ -117,6 +118,22 @@ products.map((item) => {
 });
 
 if (window.localStorage.getItem("isLogged")) {
+
+  customerInfoResponsive.insertAdjacentHTML(
+    "beforeend",
+    `
+    <span class="mb-3 mt-3">
+    ${window.localStorage.getItem("user")}
+    </span>
+        <input
+        type="button"
+        class="btn btn-dark"
+        onClick="loggoutStore()"
+        value="Sair"
+      />
+    `
+  );
+
   customerInfo.insertAdjacentHTML(
     "beforeend",
     `
@@ -132,6 +149,27 @@ if (window.localStorage.getItem("isLogged")) {
     `
   );
 } else {
+  customerInfoResponsive.insertAdjacentHTML(
+    "beforeend",
+    `
+    <input
+    type="button"
+    class="btn btn-dark"
+    data-bs-toggle="modal"
+    data-bs-target="#authModal"
+    onClick="onRegisterAuth()"
+    value="Cadastrar"
+  />
+    <input type="button"
+    data-bs-toggle="modal"
+    data-bs-target="#authModal"
+    onClick="onLoginAuth()"
+    class="btn border-dark"
+    value="Entrar"
+  />
+    `
+  );
+
   customerInfo.insertAdjacentHTML(
     "beforeend",
     `
