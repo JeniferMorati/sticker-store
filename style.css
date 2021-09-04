@@ -1,0 +1,13 @@
+body {
+  background-image: url('./assets/waves.png');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: contain;
+  background-attachment: fixed;
+}
+
+.hidden-element {
+  position: absolute;
+  top: 999%;
+  opacity: 0;
+}
