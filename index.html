@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css">
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-light mt-3 container rounded-pill shadow-sm bg-light">
+        <div class="container container-fluid">
+          <a class="navbar-brand" href="#">
+            <img
+              src="./assets/catlogo.png"
+              alt=""
+              width="30"
+              height="24"
+              class="d-inline-block align-text-top"
+            />
+            Sticker Store
+          </a>
+          <ul class="dark nav justify-content-center align-items-center">
+            <li class="nav-item">
+              <a class="nav-link link-dark active" aria-current="page" href="#"
+                >Inicio</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link-dark" href="#">Produtos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link-dark" href="#">Carrinho</a>
+            </li>
+            <li class="nav-item d-flex align-items-center justify-content-center" id="customerInfo">
+
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <section
+      class="
+        d-flex
+        justify-content-center
+        align-items-center
+        mt-5
+        container
+        flex-wrap
+      "
+      id="container-store"
+    ></section>
+
+    <div
+      class="modal fade"
+      id="checkoutModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="checkoutModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="checkoutModalLabel"></h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body d-flex justify-content-between">
+            <section class="d-flex flex-column">
+              <span>
+                <strong>Produto</strong>
+                <p id="checkoutModalProduct"></p>
+              </span>
+              <span>
+                <strong>Preço</strong>
+                <p id="checkoutModalPrice"></p>
+              </span>
+            </section>
+            <img
+              id="checkoutModalImage"
+              width="140px"
+              height="100px"
+              class="img-thumbnail"
+              src="https://mlohrktvfr9b.i.optimole.com/scftOdE.BaVg~16a4d/w:247/h:247/q:90/https://www.nerdstickers.com.br/wp-content/uploads/2020/11/STK-227-Octocat-II-525X525cm-1.jpg"
+              alt="Adesivo"
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn border-dark"
+              data-bs-dismiss="modal"
+              id="checkoutDimiss"
+            >
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#successCheckoutModal" id="submitCheckout">Confirmar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="authModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="authModalLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping">E-mail</span>
+              <input id="authUserInput" type="text" class="form-control" placeholder="exemplo@gmail.com" aria-label="Username" aria-describedby="addon-wrapping">
+            </div>
+            <div class="input-group flex-nowrap mt-3">
+              <span class="input-group-text" id="addon-wrapping">Senha</span>
+              <input id="authPassInput" type="password" class="form-control" aria-label="Password" aria-describedby="addon-wrapping">
+            </div>
+            <p class="text-danger mt-3" id="errorAuthMessage">
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" id="authVerify"></button>
+            <button type="button" class="hidden-element" data-bs-dismiss="modal" id="dimissAuthVerifyModal">Sair</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="successCheckoutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="successCheckoutModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="successCheckoutModalLabel">Parabéns!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Parabéns!
+              <p>Tudo certo com a sua compra, agora é so aguardar!</p>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Obrigado</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./mocks/mock.js"></script>
+    <script src="./javascript/index.js"></script>
+  </body>
+</html>
