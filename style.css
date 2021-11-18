@@ -1,9 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
 body {
-  background-image: url('./assets/waves.png');
+  background-image: url("./assets/waves.png");
   background-repeat: no-repeat;
   background-position: top;
   background-size: contain;
   background-attachment: fixed;
+}
+
+* {
+  font-family: "Roboto";
+}
+
+body,
+.App::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: transparent;
+  background-image: -webkit-gradient(
+    linear,
+    40% 0%,
+    75% 84%,
+    from(#9900ef),
+    to(#8ed1fc),
+    color-stop(0.6, #7bdcb5)
+  );
 }
 
 .hidden-element {

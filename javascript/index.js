@@ -14,6 +14,76 @@ const authUserInput = document.getElementById("authUserInput");
 const dimissAuthVerifyModal = document.getElementById("dimissAuthVerifyModal");
 const errorAuthMessage = document.getElementById("errorAuthMessage");
 const customerInfoResponsive = document.getElementById("customerInfoResponsive");
+const HeaderComponent = document.getElementById("renderHeader");
+
+const renderComponents = (component, target) => {
+  console.log(component, target);
+  const el = document.querySelector(target.id);
+  
+  //Se o elemento não existir então não requisita
+  if (!el) return;
+  
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", component, true);
+  xhr.onreadystatechange = function(){
+    if (xhr.readyState == 4 && xhr.status >= 200 && xhr.status < 300){
+      el.innerHTML = xhr.responseText;
+    }
+  };
+  
+  xhr.send(null);
+};
+
+const test2 = document.createElement("div");
+
+const test3 = test2.innerHTML = `<nav class="navbar navbar-expand-lg navbar-light mt-3 container rounded-pill shadow-sm bg-light">
+<div class="container-fluid">
+    <a class="navbar-brand" href="#">
+        <img src="./assets/catlogo.png" alt="" width="30" height="24" class="d-inline-block align-text-top" />
+        Sticker Store
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link link-dark active" aria-current="page" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-dark" href="/pages/categorys.html">Categorias</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-dark" href="#">Carrinho</a>
+            </li>
+        </ul>
+        <li class="nav-item d-flex align-items-center justify-content-center" id="customerInfo">
+
+        </li>
+    </div>
+</div>
+</nav>
+
+<div class="collapse navbar-collapse container bg-light rounded shadow-sm bg-light mt-1" id="navbarNav">
+<ul class="navbar-nav">
+    <li class="nav-item d-flex align-items-center justify-content-between rounded shadow-sm p-3 mt-3 mb-3"
+        id="customerInfoResponsive">
+
+    </li>
+    <li class="nav-item">
+        <a class="nav-link link-dark active" aria-current="page" href="#">Inicio</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link link-dark" href="#">Produtos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link link-dark" href="#">Carrinho</a>
+    </li>
+</ul>
+</div>`;
+
+renderComponents(test2, HeaderComponent);
 
 submitCheckout.addEventListener("click", () => {
   checkoutDimiss.click();
