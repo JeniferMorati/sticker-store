@@ -1,4 +1,5 @@
 const containerStore = document.getElementById("container-store");
+const containerCategorys = document.getElementById("container-categorys");
 const customerInfo = document.getElementById("customerInfo");
 const checkoutModal = document.getElementById("checkoutModal");
 const checkoutModalTitle = document.getElementById("checkoutModalLabel");
@@ -13,126 +14,13 @@ const authPassInput = document.getElementById("authPassInput");
 const authUserInput = document.getElementById("authUserInput");
 const dimissAuthVerifyModal = document.getElementById("dimissAuthVerifyModal");
 const errorAuthMessage = document.getElementById("errorAuthMessage");
-const customerInfoResponsive = document.getElementById("customerInfoResponsive");
-const HeaderComponent = document.getElementById("renderHeader");
+const customerInfoResponsive = document.getElementById(
+  "customerInfoResponsive"
+);
 
-const renderComponents = (component, target) => {
-  console.log(component, target);
-  const el = document.querySelector(target.id);
-  
-  //Se o elemento não existir então não requisita
-  if (!el) return;
-  
-  const xhr = new XMLHttpRequest();
-  xhr.open("GET", component, true);
-  xhr.onreadystatechange = function(){
-    if (xhr.readyState == 4 && xhr.status >= 200 && xhr.status < 300){
-      el.innerHTML = xhr.responseText;
-    }
-  };
-  
-  xhr.send(null);
-};
+let productsState = products;
 
-const test2 = document.createElement("div");
-
-const test3 = test2.innerHTML = `<nav class="navbar navbar-expand-lg navbar-light mt-3 container rounded-pill shadow-sm bg-light">
-<div class="container-fluid">
-    <a class="navbar-brand" href="#">
-        <img src="./assets/catlogo.png" alt="" width="30" height="24" class="d-inline-block align-text-top" />
-        Sticker Store
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link link-dark active" aria-current="page" href="#">Inicio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link link-dark" href="/pages/categorys.html">Categorias</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link link-dark" href="#">Carrinho</a>
-            </li>
-        </ul>
-        <li class="nav-item d-flex align-items-center justify-content-center" id="customerInfo">
-
-        </li>
-    </div>
-</div>
-</nav>
-
-<div class="collapse navbar-collapse container bg-light rounded shadow-sm bg-light mt-1" id="navbarNav">
-<ul class="navbar-nav">
-    <li class="nav-item d-flex align-items-center justify-content-between rounded shadow-sm p-3 mt-3 mb-3"
-        id="customerInfoResponsive">
-
-    </li>
-    <li class="nav-item">
-        <a class="nav-link link-dark active" aria-current="page" href="#">Inicio</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link link-dark" href="#">Produtos</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link link-dark" href="#">Carrinho</a>
-    </li>
-</ul>
-</div>`;
-
-renderComponents(test2, HeaderComponent);
-
-submitCheckout.addEventListener("click", () => {
-  checkoutDimiss.click();
-});
-
-const loggoutStore = () => {
-  window.localStorage.removeItem('isLogged');
-  window.localStorage.removeItem('user');
-  document.location.reload();
-}
-
-authVerify.addEventListener("click", () => {
-  if (authModalLabel.textContent === "Login") {
-    if (window.localStorage.getItem(`user${authUserInput.value}`)) {
-      const passCompare = window.localStorage.getItem(
-        `pass${authUserInput.value}`
-      );
-      if (authPassInput.value === passCompare) {
-        window.localStorage.setItem("user", authUserInput.value);
-        dimissAuthVerifyModal.click();
-        window.localStorage.setItem("isLogged", true);
-        document.location.reload(true);
-      } else {
-        errorAuthMessage.innerText = "senha incorreta";
-      }
-    } else {
-      errorAuthMessage.innerText = "Usuário não existe, por favor registre-se";
-    }
-  }
-
-  if (authModalLabel.textContent === "Registrar") {
-    if (window.localStorage.getItem(`user${authUserInput.value}`)) {
-      errorAuthMessage.innerText = "usuário já existe, por favor faça login";
-    } else {
-      window.localStorage.setItem(
-        `user${authUserInput.value}`,
-        authUserInput.value
-      );
-      window.localStorage.setItem(
-        `pass${authUserInput.value}`,
-        authPassInput.value
-      );
-      dimissAuthVerifyModal.click();
-      isLogged = true;
-    }
-  }
-});
-
-products.map((item) => {
+productsState.map((item) => {
   if (window.localStorage.getItem("isLogged")) {
     containerStore.insertAdjacentHTML(
       "beforeend",
@@ -173,7 +61,7 @@ products.map((item) => {
             alt="Adesivo ${item.title}"
           />
           <div class="card-body">
-            <h5 class="card-title">${item.title}</h5>
+            <h5 class="card-title-">${item.title}</h5>
             <p>
               <small>R$: ${item.price}</small>
             </p>
@@ -187,8 +75,140 @@ products.map((item) => {
   }
 });
 
-if (window.localStorage.getItem("isLogged")) {
+submitCheckout.addEventListener("click", () => {
+  checkoutDimiss.click();
+});
 
+const loggoutStore = () => {
+  window.localStorage.removeItem("isLogged");
+  window.localStorage.removeItem("user");
+  document.location.reload();
+};
+
+authVerify.addEventListener("click", () => {
+  if (authModalLabel.textContent === "Login") {
+    if (window.localStorage.getItem(`user${authUserInput.value}`)) {
+      const passCompare = window.localStorage.getItem(
+        `pass${authUserInput.value}`
+      );
+      if (authPassInput.value === passCompare) {
+        window.localStorage.setItem("user", authUserInput.value);
+        dimissAuthVerifyModal.click();
+        window.localStorage.setItem("isLogged", true);
+        document.location.reload(true);
+      } else {
+        errorAuthMessage.innerText = "senha incorreta";
+      }
+    } else {
+      errorAuthMessage.innerText = "Usuário não existe, por favor registre-se";
+    }
+  }
+
+  if (authModalLabel.textContent === "Registrar") {
+    if (window.localStorage.getItem(`user${authUserInput.value}`)) {
+      errorAuthMessage.innerText = "usuário já existe, por favor faça login";
+    } else {
+      window.localStorage.setItem(
+        `user${authUserInput.value}`,
+        authUserInput.value
+      );
+      window.localStorage.setItem(
+        `pass${authUserInput.value}`,
+        authPassInput.value
+      );
+      dimissAuthVerifyModal.click();
+      isLogged = true;
+    }
+  }
+});
+
+const selectCategory = (category) => {
+  const categoryComponent = category.component;
+  const renderDynamicCategory = new CustomEvent("render-category", {
+    detail: category.category,
+  });
+
+  categoryComponent.addEventListener("click", () => {
+    dispatchEvent(renderDynamicCategory);
+  });
+};
+
+window.addEventListener("render-category", (e) => {
+  const newProductsList = products.filter((item) => item.category === e.detail);
+  renderDynamicProducts(newProductsList);
+});
+
+categorys.map((item) => {
+  containerCategorys.insertAdjacentHTML(
+    "beforeend",
+    ` 
+      <div class="card m-2 shadow-sm transition-slim" style="width: 18rem; cursor: pointer; border: none;" id="category-${item.id}"
+      >
+        <img
+          src="${item.image}"
+          width: "50px"
+          class="card-img-top"
+          alt="Adesivo ${item.title}"
+        />
+        <div class="card-body">
+          <h5 class="card-category-title">${item.title}</h5>
+        </div>
+      </div>
+    `
+  );
+  const categoryPayload = {
+    title: item.title,
+    category: item.category,
+    component: document.getElementById(`category-${item.id}`),
+  };
+
+  selectCategory(categoryPayload);
+});
+
+const renderDynamicProducts = (product) => {
+  const otherProducts = products.filter(
+    (item) => item.category !== product[0].category
+  );
+
+  const selectedProducts = products.filter(
+    (item) => item.category === product[0].category
+  );
+
+  const selectedCategory = categorys.filter(
+    (item) => item.category === product[0].category
+  );
+
+  const otherCategorys = categorys.filter(
+    (item) => item.category !== product[0].category
+  );
+
+  otherCategorys.map((item) => {
+    const otherCategory = document.getElementById(`category-${item.id}`);
+    otherCategory.classList.remove("category-selected");
+  });
+
+  const selectedCategoryElement = document.getElementById(
+    `category-${selectedCategory[0].id}`
+  );
+
+  selectedCategoryElement.classList.add("category-selected");
+
+  console.log(selectedCategoryElement);
+
+  otherProducts.map((item) => {
+    const OtherElement = document.getElementById(`product-${item.id}`);
+    OtherElement.classList.add("remove-element");
+  });
+
+  selectedProducts.map((item) => {
+    const OtherElement = document.getElementById(`product-${item.id}`);
+    OtherElement.classList.remove("remove-element");
+  });
+};
+
+renderDynamicProducts(productsState);
+
+if (window.localStorage.getItem("isLogged")) {
   customerInfoResponsive.insertAdjacentHTML(
     "beforeend",
     `
@@ -283,7 +303,9 @@ const openCheckoutModal = (teste) => {
   checkoutModalImage.setAttribute("src", `${checkoutItem.image}`);
 };
 
-const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+const tooltipTriggerList = [].slice.call(
+  document.querySelectorAll('[data-bs-toggle="tooltip"]')
+);
 const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
+  return new bootstrap.Tooltip(tooltipTriggerEl);
 });

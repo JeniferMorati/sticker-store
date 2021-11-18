@@ -178,21 +178,24 @@ const products = [
 
 const categorys = [
   {
-    "id": 1,
-    "category": "tec",
-    "title": " Tecnologia",
-    "image": "https://mlohrktvfr9b.i.optimole.com/scftOdE.BaVg~16a4d/w:247/h:247/q:90/https://www.nerdstickers.com.br/wp-content/uploads/2020/11/adesivo-00-TuxSudo-NS.png"
+    id: 1,
+    category: "tec",
+    title: "Tecnologia",
+    image:
+      "https://mlohrktvfr9b.i.optimole.com/scftOdE.BaVg~16a4d/w:247/h:247/q:90/https://www.nerdstickers.com.br/wp-content/uploads/2020/11/adesivo-00-TuxSudo-NS.png",
   },
   {
-    "id": 2,
-    "category": "anime",
-    "title": "Eyes of slayers",
-    "image": "https://mlohrktvfr9b.i.optimole.com/scftOdE.BaVg~16a4d/w:600/h:600/q:90/https://www.nerdstickers.com.br/wp-content/uploads/2021/05/00-eyes-of-slayers-site.png"
+    id: 2,
+    category: "anime",
+    title: "Anime",
+    image:
+      "https://mlohrktvfr9b.i.optimole.com/scftOdE.BaVg~16a4d/w:600/h:600/q:90/https://www.nerdstickers.com.br/wp-content/uploads/2021/05/00-eyes-of-slayers-site.png",
   },
   {
-    "id": 3,
-    "category": "games",
-    "title": "Yoshi Pixel",
-    "image": "https://mlohrktvfr9b.i.optimole.com/scftOdE.BaVg~16a4d/w:600/h:600/q:90/https://www.nerdstickers.com.br/wp-content/uploads/2020/11/adesivo-00-Pixel-Yoshi-Douglas-Feer.png"
+    id: 3,
+    category: "games",
+    title: "Games",
+    image:
+      "https://mlohrktvfr9b.i.optimole.com/scftOdE.BaVg~16a4d/w:600/h:600/q:90/https://www.nerdstickers.com.br/wp-content/uploads/2020/11/adesivo-00-Pixel-Yoshi-Douglas-Feer.png",
   },
 ];

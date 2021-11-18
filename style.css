@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 body {
-  background-image: url("./assets/waves.png");
+  background-image: url("./assets/store.gif");
   background-repeat: no-repeat;
-  background-position: top;
-  background-size: contain;
+  background-position: center;
+  background-size: cover;
   background-attachment: fixed;
 }
 
@@ -12,19 +12,18 @@ body {
   font-family: "Roboto";
 }
 
-body,
 .App::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
   background-color: transparent;
   border-radius: 10px;
 }
 
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 6px;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: transparent;
   background-image: -webkit-gradient(
@@ -41,4 +40,34 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   top: 999%;
   opacity: 0;
+}
+
+.remove-element {
+  display: none;
+}
+
+.transition-slim {
+  transition: 0.35s;
+}
+
+.category-selected {
+  box-shadow: 5px 15px 5px rgba(106, 27, 154, 0.3) !important;
+  transform: translateY(-10px);
+}
+
+.card-category-title {
+  position: absolute;
+  font-size: 2em;
+  text-transform: uppercase;
+  color: white;
+  background-color: rgba(106, 27, 154, 0.6);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-weight: bold;
 }
